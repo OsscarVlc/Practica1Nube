@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { v4 as uuidv4 } from "uuid";
+import { randomUUID } from "crypto";
 import { uploadToS3 } from "../services/s3.service";
 import { resizePicture, composePolaroid } from "../services/polaroid.service";
 import { insertPhoto } from "../repositories/photos.repository";
@@ -35,7 +35,7 @@ export async function uploadPhoto(req: Request, res: Response): Promise<void> {
   try {
 
     // genera un nuevo UUID para la foto y definir las rutas en S3
-    const photoId = uuidv4();
+    const photoId = randomUUID();
     const picturePath = `pictures/${photoId}.jpg`;
     const polaroidPath = `polaroids/${photoId}.jpg`;
 

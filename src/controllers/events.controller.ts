@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { v4 as uuidv4 } from "uuid"; // v4 es la version de UUID que genera IDs aleatorios
+import { randomUUID } from "crypto"; // randomUUID genera IDs aleatorios tipo UUID v4, nativo de Node
 import { EventRecord, insertarEvento } from "../repositories/events.repository";
 import { getPool } from "../db/pool";
 import { countPhotosByEvent } from "../repositories/photos.repository";
@@ -21,7 +21,7 @@ export async function crearEvento(req: Request, res: Response): Promise<void> {
 
 
   // Generamos un nuevo UUID para el evento
-  const eventId = uuidv4();
+  const eventId = randomUUID();
 
   try {
     await insertarEvento(eventId, client_name, event_type, event_date);
