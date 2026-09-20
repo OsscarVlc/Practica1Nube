@@ -50,9 +50,9 @@ export async function getDbCredentials(): Promise<DbCredentials> {
   const parsed = JSON.parse(response.SecretString);
 
   cachedCredentials = {
-    host: parsed.host,
-    port: Number(parsed.port) || 5432, // Si no viene el puerto, usamos el 5432 por defecto
-    dbname: parsed.dbname,
+    host: DB_HOST,
+    port: DB_PORT,
+    dbname: DB_NAME,
     username: parsed.username,
     password: parsed.password,
   };
