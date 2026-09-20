@@ -31,6 +31,9 @@ export async function initPool(): Promise<Pool> {
     user: creds.username,
     password: creds.password,
     max: 10, // maximo de conexiones simultaneas en el pool
+    ssl:{
+      rejectUnauthorized: false // Esto es necesario para conectarse a RDS con SSL, pero en produccion deberia ser true
+    }
   });
 
   return pool;
